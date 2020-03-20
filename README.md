@@ -43,7 +43,7 @@ Options:
 	-n, --column_name	remove the first row (header)
 	-u, --threshold	[INT]	coverage above the threshold
 	/* For Ion Torrent Data */
-	-w, --flow		modify the sequence by flow signals (FZ)
+	-w, --flow		modify the sequence according to flow signals (FZ)
 	-z, --zm		change the FZ values to ZM values
 	-p, --pattern	[STR]	show the percentage of ALT pattern specified (pattern mode)
 	-h, --help		show the manual page    
