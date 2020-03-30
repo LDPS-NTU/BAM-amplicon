@@ -113,10 +113,17 @@ AVE.DP	COV.RT	**(AVE.DP: average depth; COV.RT: coverage rate)
 1.5000	0.857143
 
 [user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -v -l -u 2
-CHR	chr1
 THRESH	2X	** (THRESH: threshold)
+chr1	3
 TOT.DP	3
 COV.RT	0.42857
+
+[user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -v -l -u 2,5
+THRESH	2X	5X	** (THRESH: threshold)
+chr1	3	0
+TOT.DP	3	0
+COV.RT	0.42857	0.00000
+
 ```
 
 ```
