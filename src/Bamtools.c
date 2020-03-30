@@ -20,46 +20,45 @@ void 	alignment_ListAndCoverage(uint8_t *stream, alignmentHeader *AlignmentHeade
 void	strcat_triple(char	*main, char *first, char *second, char *third, int length);
 
 void	usage(){
-	printf("Program: bam-utility (for bam file)\n");
-	printf("Usage:  bam-utility -m <Mode> -b <bam_filename> [Options]\n\n");
+	printf("Program: bam-utility (for BAM file)\n");
+	printf("Version: 1.0\n");
+	printf("Usage:   bam-utility -m <Mode> -b <bam_filename> [Options]\n");
+	printf("\n");
 	//printf("Mode:	depthdist	about depth's distribution\n");
 	printf("Mode:	depthdist	show depths\n");
 	//printf("	ampsummary	about amplicon's depth and cover rate\n");
-	printf("	ampsummary	show depths and cover rates within specified amplicons\n");
-	printf("	stat		show bam statistics\n");
+	printf("	ampsummary	show depths and coverage rates within specified amplicons\n");
+	printf("	stat		show BAM statistics\n");
 	printf("	pattern		show frequency of patterns within a specified region\n");
-	printf("	quality		show distribution of quality scores on a specified position\n");
+	printf("	quality		show distribution of quality scores for a specified position\n");
 	printf("	poly		show read sequences with homopolymers\n");
 	printf("	length		show distribution of mapped read lenghts\n");
 	printf("	del		show frequency of deletions with position info\n");
-	printf("	trim		trim the bam file using amplicons provided by the bed file\n");
+	printf("	trim		trim the BAM file using amplicons provided by the BED file\n");
 //	printf("	poly		\n");
 	printf("\n");
 
 	printf("Options:\n");
-	printf("	-b, --bam    [FILE]	input bam file\n");
-	printf("	-r, --bed    [FILE]	bed file for a list of specified regions\n");
+	printf("	-b, --bam    [FILE]	input BAM file\n");
+	printf("	-r, --bed    [FILE]	the range of specified regions from BED file\n");
 	printf("	-c, --chr    [STR]	chromosome name\n");
-	printf("	-s, --start  [INT]	start position (1-based)\n");
-	printf("	-e, --end    [INT]	end position (1-based)\n");
-
+	printf("	-s, --start  [INT]	start position (1-based, i.e. first base is 1)\n");
+	printf("	-e, --end    [INT]	end position (1-based, i.e. first base is 1)\n");
 	printf("	-g, --fasta  [FILE]	fasta file (reference file)\n");
-
-	printf("	-t, --target [FILE]	bed file for a list of amplicon regions\n");
-
-	printf("	-f, --filter [Type]	filter criteria\n");
-	printf("				[ readqual, ...]\n");
-	printf("	-l, --lite		show only average depth and coverage rate (depthdist mode) \n");
-	printf("	-a, --origin		show origin sequence (include insertion)\n");
+	printf("	-t, --target [FILE]	the ragne of amplicon regions from BED file\n");
+	printf("	-f, --filter [TYPE]	filter criteria\n");
+	printf("				[readqual, mapqual]\n");
+	printf("	-l, --compact		show only average depth and coverage rate (depthdist mode) \n");
+	printf("	-a, --origin		show original sequence (include insertion)\n");
 	printf("	-d, --duplicate		show duplicate\n");
-	printf("	-v, --verbose		don't show the processed status \n");
-	printf("	-n, --column_Name	remove the first row (header)\n");
-	printf("	-u, --threshold	[STR]	coverage above the threshold\n");
-	printf("	/* For Ion Torrent Data */\n");
-	printf("	-w, --flow		modified the sequence by flow signal (FZ)\n");
-	printf("	-z, --zm		change the FZ value to ZM value\n");
+	printf("	-v, --verbose		show the processed status \n");
+	printf("	-n, --column_name	remove the first row (header)\n");
+	printf("	-u, --threshold	[INT]	coverage above the threshold\n");
+//	printf("	/* For Ion Torrent Data */\n");
+//	printf("	-w, --flow		modify the sequence by flow signals (FZ)\n");
+//	printf("	-z, --zm		change the FZ values to ZM values\n");
 
-	printf("	-p, --pattern	[STR]	show the percentage of ALT pattern specified (pattern mode)\n");
+	printf("	-p, --pattern	[STR]	show the percentage of ALT pattern specified (pattern mode only)\n");
 	printf("	-h, --help		show the manual page\n");
 	printf("	\n");
 }
@@ -114,8 +113,8 @@ int main(int argc, char *argv[]){
 	int	flag_fasta = 0;
 	int	flag_bed;
 	int	flag_dir;
-	int	flag_start;
-	int	flag_end;
+	int	flag_start	= 0;
+	int	flag_end	= 0;
 
 //END
 
@@ -196,8 +195,8 @@ int main(int argc, char *argv[]){
 		{"pattern",	1,	NULL,	'p'},
 		{"threshold",	1,	NULL,	'u'},
 		{"verbose",	0,	NULL,	'v'},
-		{"column_Name",	0,	NULL,	'n'},
-		{"lite",	0,	NULL,	'l'},
+		{"column_name",	0,	NULL,	'n'},
+		{"compact",	0,	NULL,	'l'},
 		{"origin",	0,	NULL,	'a'},
 		{"duplicate",	0,	NULL,	'd'},
 		{"mapq",	0,	NULL,	'M'},
@@ -391,6 +390,23 @@ int main(int argc, char *argv[]){
 		ToolsFlags.file_target = fopen(target, "r");
 	}
 
+	if (flag_start == 1){
+		if (ToolsFlags.chromosome == NULL){
+			printf("\n[Error!]\tChromosome is missed.\n");
+			return -1;
+		}
+	}
+
+	if (flag_end == 1){
+		if (ToolsFlags.chromosome == NULL){
+			printf("\n[Error!]\tChromosome is missed.\n");
+			return -1;
+		}
+ 		if (flag_start == 0){
+			printf("\n[Error!]\tStart position is missed.\n");
+			return -1;
+		}
+	}
 
 
 	//start--;

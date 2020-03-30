@@ -184,11 +184,13 @@ int	BamStat(FILE *file_bam_i, toolsFlags *ToolsFlags){
 		//printf("%s\t%d\n",chr_name[i], chr_length[i]);
 	}
 
-	if (ToolsFlags->flag_hide != 1){
+	/* comment 2020/03/30 YC
+	if (ToolsFlags->flag_hide == 1){
 		for (i = 0;i < n_ref;i++){
 			printf("%s\t%d\n",chr_name[i], chr_length[i]);
 		}
 	}
+	*/
 	counter	= top - address;
 	
 	memset((char *)&BamStatRead,0,sizeof(bamStatRead));
@@ -222,7 +224,7 @@ int	BamStat(FILE *file_bam_i, toolsFlags *ToolsFlags){
 //			printf("%d\n",AlignmentHeader.refID);
 			//Chromosome Change
 			if (AlignmentHeader.refID != ref_ID){
-				if (ToolsFlags->flag_hide == 0 && n_ref != 0){
+				if (ToolsFlags->flag_hide == 1 && n_ref != 0){
 					printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 				}
 				ref_ID = AlignmentHeader.refID;

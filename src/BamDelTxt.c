@@ -70,11 +70,14 @@ int	BamDelTxt(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, toolsFlags *
 	counter	= top - buffer;
 	address = buffer;
 
+	
+	/* comment 2020/03/30 YC
 	if (ToolsFlags->flag_hide != 1){
 		for (i = 0;i < BamHeader.n_ref;i++){
 			printf("%s\t%d\n",BamHeader.chr_name[i], BamHeader.chr_length[i]);
 		}
 	}
+	*/
 	//Start Unzip and Process Bam File
 	createRegionTable(file_bed_i, &BedTable, &BamHeader, ToolsFlags);
 	
@@ -145,8 +148,7 @@ int	BamDelTxt(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, toolsFlags *
 			}
 		//	fclose(file_cov_o);
 		}
-//		printf("Johnnash - 3\n");	
-		if (ToolsFlags->flag_hide == 0){
+		if (ToolsFlags->flag_hide == 1){
 			printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,BamHeader.n_ref,BamHeader.chr_name[ref_ID]);
 		}
 	}

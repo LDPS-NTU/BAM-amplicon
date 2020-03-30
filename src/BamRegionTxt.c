@@ -122,11 +122,13 @@ int	BamRegionTxt(FILE *file_bam_i, FILE *file_bai_i, FILE *file_length_o, int fl
 			fprintf(file_length_o,"%s\t%d\n",chr_name[i], chr_length[i]);
 		}
 	}
+	/* comment 2020/03/30 YC
 	if (flag_hide != 1){
 		for (i = 0;i < n_ref;i++){
 			printf("%s\t%d\n",chr_name[i], chr_length[i]);
 		}
 	}
+	*/
 	top = buffer + BgfzTail.I_size;
 	counter	= top - address;
 
@@ -182,7 +184,7 @@ int	BamRegionTxt(FILE *file_bam_i, FILE *file_bai_i, FILE *file_length_o, int fl
 			//	printf("Johnnash\n");
 				if (AlignmentHeader.refID != ref_ID){
 					if (ref_ID != -1){
-						if (flag_hide == 0){
+						if (flag_hide == 1){
 							printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 						}	
 					}
@@ -214,7 +216,7 @@ int	BamRegionTxt(FILE *file_bam_i, FILE *file_bai_i, FILE *file_length_o, int fl
 			if (AlignmentHeader.pos > end && flag_in == 1){	break;	}
 		}
 		if (ref_ID != -1){
-			if (flag_hide == 0){
+			if (flag_hide == 1){
 				printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 			}
 		}

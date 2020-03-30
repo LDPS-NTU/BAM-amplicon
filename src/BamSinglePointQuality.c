@@ -126,12 +126,15 @@ int	BamSinglePointQuality(FILE *file_bam_i, FILE *file_bai_i, char *chromosome, 
 			}
 		}
 	}
-	
-	if (ToolsFlags->flag_hide != 1){
+
+	/* comment 2020/03/30 YC	
+	if (ToolsFlags->flag_hide == 1){
 		for (i = 0;i < n_ref;i++){
 			printf("%s\t%d\n",chr_name[i], chr_length[i]);
 		}
 	}
+	*/
+
 	top = buffer + BgfzTail.I_size;
 	counter	= top - address;
 
@@ -191,7 +194,7 @@ int	BamSinglePointQuality(FILE *file_bam_i, FILE *file_bai_i, char *chromosome, 
 
 			if (AlignmentHeader.refID != ref_ID){
 				if (ref_ID != -1){
-					if (ToolsFlags->flag_hide == 0){
+					if (ToolsFlags->flag_hide == 1){
 						printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 					}	
 				}
@@ -230,12 +233,17 @@ int	BamSinglePointQuality(FILE *file_bam_i, FILE *file_bai_i, char *chromosome, 
 		}
 	}
 	if (ref_ID != -1){
-		if (ToolsFlags->flag_hide == 0){
+		if (ToolsFlags->flag_hide == 1){
 			printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 		}
 	}
-	
 
+
+	for (j = 0;j < 8;j++){
+		SumQuality[j] = 0;
+	}
+	
+	printf("Q.SCORE\tA_FOR\tC_FOR\tG_FOR\tT_FOR\tA_REV\tC_REV\tG_REV\tT_REV\t**(Q.SCORE: quality score; FOR: forward; REV: reverse)\n");
 	for(i = 0;i < 64;i++){
 		printf("%d\t",i);
 		for (j = 0;j < 8;j++){

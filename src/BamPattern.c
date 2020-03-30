@@ -104,11 +104,13 @@ int	BamPattern(FILE *file_bam_i, FILE *file_bai_i,  FILE *file_bed_i, char *chro
 	counter	= top - buffer;
 	address = buffer;
 
-	if (ToolsFlags->flag_hide != 1){
+	/* comment 2020/03/30 YC
+	if (ToolsFlags->flag_hide == 1){
 		for (i = 0;i < BamHeader.n_ref;i++){
 			printf("%s\t%d\n",BamHeader.chr_name[i], BamHeader.chr_length[i]);
 		}
 	}
+	*/
 
 	if (ToolsFlags->flag_target){
 		decodeBedFile(ToolsFlags->file_target, &TargetTable, &BamHeader);
@@ -368,7 +370,7 @@ int	BamPattern(FILE *file_bam_i, FILE *file_bai_i,  FILE *file_bed_i, char *chro
 				}
 				counter = top - address;
 			}
-			if (ToolsFlags->flag_hide == 0){
+			if (ToolsFlags->flag_hide == 1){
 				printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1, BamHeader.n_ref, BamHeader.chr_name[ref_ID]);
 			}
 			if (ToolsFlags->flag_pattern){

@@ -81,12 +81,14 @@ int	BamMappingLength(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char 
 	counter	= top - buffer;
 	address = buffer;
 
-	if (ToolsFlags->flag_hide != 1){
+	/* comment 2020/03/30 YC
+	if (ToolsFlags->flag_hide == 1){
 		for (i = 0;i < BamHeader.n_ref;i++){
 			printf("%s\t%d\n",BamHeader.chr_name[i], BamHeader.chr_length[i]);
 		}
 	}
-	
+	*/
+
 	//Bed File
 	if (file_bed_i != NULL){
 		while	(fgets(line, LINE_MAX_LEN, file_bed_i) != NULL){
@@ -174,7 +176,7 @@ int	BamMappingLength(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char 
 			//Chromosome Change
 			if (AlignmentHeader.refID != ref_ID){
 				if (ref_ID != -1){
-					if (ToolsFlags->flag_hide == 0 ){
+					if (ToolsFlags->flag_hide == 1 ){
 						printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1, BamHeader.n_ref, BamHeader.chr_name[ref_ID]);
 					}
 					
@@ -246,7 +248,7 @@ int	BamMappingLength(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char 
 	}
 	
 	if (ref_ID != -1){
-		if (ToolsFlags->flag_hide == 0){	
+		if (ToolsFlags->flag_hide == 1){	
 			printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,BamHeader.n_ref,BamHeader.chr_name[ref_ID]);	
 		}
 

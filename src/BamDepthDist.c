@@ -120,11 +120,11 @@ int	BamDepthDist(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char *chr
 			/* Get next token: */
 		}
 //		printf("%d\n",num_threshold);
-		printf("CHR");
+		printf("THRESH");
 		for ( index_threshold = 0; index_threshold < num_threshold; index_threshold++){
 			printf("\t%dX", threshold[index_threshold]);
 		}
-		printf("\n");
+		printf("\t** (THRESH: threshold)\n");
 		
 	}
 
@@ -145,17 +145,25 @@ int	BamDepthDist(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char *chr
 	counter	= top - buffer;
 	address = buffer;
 
-	if (ToolsFlags->flag_hide != 1){
+	/* comment 2020/03/30 YC
+	if (ToolsFlags->flag_hide == 1){
 		for (i = 0;i < BamHeader.n_ref;i++){
 			printf("%s\t%d\n",BamHeader.chr_name[i], BamHeader.chr_length[i]);
 		}
 	}
+	*/
 
 	if (ToolsFlags->flag_target){
 		decodeBedFile(ToolsFlags->file_target, &TargetTable, &BamHeader);
 	}
 
 	createRegionTable(file_bed_i, &BedTable, &BamHeader, ToolsFlags);
+
+
+	if (ToolsFlags->flag_coverage == 0 && ToolsFlags->flag_simple == 0){
+		printf("#CHR\tPOS\tA\tC\tG\tT\tN\tDEL\tTOTAL\n");
+	}
+
 
 		
 	//BAI File
@@ -254,7 +262,7 @@ int	BamDepthDist(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char *chr
 				}
 				counter = top - address;
 			}
-			if (ToolsFlags->flag_hide == 0){
+			if (ToolsFlags->flag_hide == 1){
 				printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1, BamHeader.n_ref, BamHeader.chr_name[ref_ID]);
 			}
 				
@@ -352,19 +360,20 @@ int	BamDepthDist(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, char *chr
 	}
 	
 	if (ToolsFlags->flag_coverage == 1){
-		printf("Total");
+		printf("TOT.DP");
 		for ( index_threshold = 0; index_threshold < num_threshold; index_threshold++){
 			printf("\t%u",num_coverage_all[index_threshold]);
 		}
 		printf("\n");
-		printf("Rate");
+		printf("COV.RT");
 		for ( index_threshold = 0; index_threshold < num_threshold; index_threshold++){
 			printf("\t%.5lf", (double)num_coverage_all[index_threshold] /Total_Length);
 		}
 		printf("\n");
 
 	}else if (ToolsFlags->flag_simple == 1){
-		printf("%f\t%f\n", (double)Total_Depth / Cover_Length, (double)Cover_Length / Total_Length);
+		printf("#AVE.DP\tCOV.RT\t**(AVE.DP: average depth; COV.RT: coverage rate)\n");
+		printf("%.4f\t%.4f\n", (double)Total_Depth / Cover_Length, (double)Cover_Length / Total_Length);
 	}
 	free(stream_i);	
 	free(stream_o);	

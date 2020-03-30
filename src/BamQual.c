@@ -89,11 +89,13 @@ int	BamQual(FILE *file_bam_i, FILE *file_length_o, int flag_hide , char *dirname
 			fprintf(file_length_o,"%s\t%d\n",chr_name[i], chr_length[i]);
 		}
 	}
+	/* comment 2020/03/30 YC
 	if (flag_hide != 1){
 		for (i = 0;i < n_ref;i++){
 			printf("%s\t%d\n",chr_name[i], chr_length[i]);
 		}
 	}
+	*/
 	top = buffer + BgfzTail.I_size;
 	counter	= top - address;
 	
@@ -115,7 +117,7 @@ int	BamQual(FILE *file_bam_i, FILE *file_length_o, int flag_hide , char *dirname
 			//Chromosome Change
 			if (AlignmentHeader.refID != ref_ID){
 				if (ref_ID != -1){
-					if (flag_hide == 0 ){
+					if (flag_hide == 1 ){
 						printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 					}
 					if(strlen(dirname_region) != 0){
@@ -180,9 +182,12 @@ int	BamQual(FILE *file_bam_i, FILE *file_length_o, int flag_hide , char *dirname
 			break;	
 		}
 	}
-	
+
+	printf("Q.SCORE\tA_FOR\tC_FOR\tG_FOR\tT_FOR\tA_REV\tC_REV\tG_REV\tT_REV\t**(Q.SCORE: quality score; FOR: forward; REV: reverse)\n");
+
+		
 	if (ref_ID != -1){
-		if (flag_hide == 0){
+		if (flag_hide == 1){
 			printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1,n_ref,chr_name[ref_ID]);
 		}
 		if(strlen(dirname_region) != 0){
