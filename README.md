@@ -39,7 +39,6 @@ Options:
 	-l, --compact		show only average depth and coverage rate (depthdist mode only)
 	-a, --origin		show the original sequence (include insertion)
 	-d, --duplicate		show duplicate
-	-v, --verbose		don't show the processed status
 	-n, --column_name	remove the first row (header)
 	-u, --threshold	[INT]	coverage above the threshold
 	/* For Ion Torrent Data */
