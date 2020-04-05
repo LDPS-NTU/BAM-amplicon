@@ -12,6 +12,7 @@ export PATH=$PATH:"$PWD/bin/"
 ## Users' Guide
 ```
 Program: bam-utility (for BAM file)
+Version: 1.0
 Usage:  bam-utility -m <Mode> -b <bam_filename> [Options]
 
 Mode:	depthdist	show depths
