@@ -87,7 +87,7 @@ int	BamTrim(FILE *file_bam_i, FILE *file_bai_i, FILE *file_bed_i, toolsFlags *To
 	createRegionTable(file_bed_i, &BedTable, &BamHeader, ToolsFlags);
 	//Bed File
 //////////////////////////////////////////////////////////////////////////////////////////
-
+	printf("MIN.DIS\tMIN.S\tMIN.E\tSEQ.POS\tAMP.POS\n");
 
 
 	//Start Unzip and Process Bam File

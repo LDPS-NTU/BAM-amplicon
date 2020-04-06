@@ -267,7 +267,7 @@ int	BamSinglePointQuality(FILE *file_bam_i, FILE *file_bai_i, char *chromosome, 
 //		sumQuality += (i-128)*PosQuality[i];
 //	}
 //	printf("\n");
-	printf("%d\n", sumQuality);
+//	printf("%d\n", sumQuality);
 	
 	free(stream_i);	
 	free(stream_o);	

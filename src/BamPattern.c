@@ -257,7 +257,13 @@ int	BamPattern(FILE *file_bam_i, FILE *file_bai_i,  FILE *file_bed_i, char *chro
 
 
 	BuildBaiTable (file_bai_i, &BaiTable);
-
+	if (!ToolsFlags->flag_pattern){
+		if (ToolsFlags->flag_origin){
+			printf("PATTERN\n");
+		}else{
+			printf("ID\tPATTERN\n");
+		}
+	}
 
 	//BAI File
 /*
@@ -374,6 +380,7 @@ int	BamPattern(FILE *file_bam_i, FILE *file_bai_i,  FILE *file_bed_i, char *chro
 				printf("[Bam File Unzip %d / %d ] %s done\n",ref_ID+1, BamHeader.n_ref, BamHeader.chr_name[ref_ID]);
 			}
 			if (ToolsFlags->flag_pattern){
+				printf("TOT.DP\tPAT.FREQ **(TOT.DP: total depth; PAT.FREQ: pattern frequency)\n");
 				if (ToolsFlags->num_ref != 0){
 					printf("%u\t%7.5f\n", ToolsFlags->num_ref, (float)ToolsFlags->num_alt /ToolsFlags->num_ref);
 				}else {

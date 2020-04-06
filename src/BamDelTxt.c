@@ -200,14 +200,14 @@ void	alignment_DeletionTxt(uint8_t *stream, alignmentHeader *AlignmentHeader, FI
 		}else if (CIGAR(op) == 'I'){
 			length += op_len;
 		}else if (CIGAR(op) == 'D'){
-			if (op_len > 3 ){
+//			if (op_len > 3 ){
 				if (flag==0){
 					fprintf(file_deletion_o,"%d_%d",index+1,op_len);
 					flag = 1;
 				}else {
 					fprintf(file_deletion_o,",%d_%d",index+1,op_len);
 				}
-			}
+//			}
 			index+=op_len;
 		}else if (CIGAR(op) == 'S'){
 			length += op_len;

@@ -222,6 +222,8 @@ int	BamPoly(FILE *file_bam_i, FILE *file_bai_i,  FILE *file_bed_i, char *chromos
 		}		
 	}
 
+	printf("ID\tPATTERN\n");
+
 	//BAI File
 	for (j = 0; j < BamHeader.n_ref; j++){
 		ref_ID = j;

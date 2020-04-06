@@ -26,16 +26,18 @@ void	usage(){
 	printf("\n");
 	//printf("Mode:	depthdist	about depth's distribution\n");
 	printf("Mode:	depthdist	show depths\n");
-	//printf("	ampsummary	about amplicon's depth and cover rate\n");
-	printf("	ampsummary	show depths and coverage rates within specified amplicons\n");
-	printf("	stat		show BAM statistics\n");
-	printf("	pattern		show frequency of patterns within a specified region\n");
 	printf("	quality		show distribution of quality scores for a specified position\n");
-	printf("	poly		show read sequences with homopolymers\n");
-	printf("	length		show distribution of mapped read lenghts\n");
+	//printf("	ampsummary	about amplicon's depth and cover rate\n");
+	printf("\n");
+	printf("	pattern		show frequency of patterns within a specified region\n");
 	printf("	del		show frequency of deletions with position info\n");
-	printf("	trim		trim the BAM file using amplicons provided by the BED file\n");
-//	printf("	poly		\n");
+	printf("	ins		show read sequences with marked insertions\n");
+	printf("\n");
+	printf("	stat		show BAM statistics\n");
+	printf("	length		show distribution of mapped read lenghts\n");
+	printf("	ampsummary	show depths and coverage rates within specified amplicons\n");
+//	printf("	trim		trim the BAM file using amplicons provided by the BED file\n");
+	printf("	trim		show the nearest amplicon for trimming,by using amplicons provided by the BED file\n");
 	printf("\n");
 
 	printf("Options:\n");
@@ -44,15 +46,15 @@ void	usage(){
 	printf("	-c, --chr    [STR]	chromosome name\n");
 	printf("	-s, --start  [INT]	start position (1-based, i.e. first base is 1)\n");
 	printf("	-e, --end    [INT]	end position (1-based, i.e. first base is 1)\n");
-	printf("	-g, --fasta  [FILE]	fasta file (reference file)\n");
+//	printf("	-g, --fasta  [FILE]	fasta file (reference file)\n");
 	printf("	-t, --target [FILE]	the ragne of amplicon regions from BED file\n");
-	printf("	-f, --filter [TYPE]	filter criteria\n");
-	printf("				[readqual, mapqual]\n");
+//	printf("	-f, --filter [TYPE]	filter criteria\n");
+//	printf("				[readqual, mapqual]\n");
 	printf("	-l, --compact		show only average depth and coverage rate (depthdist mode) \n");
 	printf("	-a, --origin		show original sequence (include insertion)\n");
-	printf("	-d, --duplicate		show duplicate\n");
-	printf("	-v, --verbose		show the processed status \n");
-	printf("	-n, --column_name	remove the first row (header)\n");
+//	printf("	-d, --duplicate		show duplicate\n");
+//	printf("	-v, --verbose		show the processed status \n");
+//	printf("	-n, --column_name	remove the first row (header)\n");
 	printf("	-u, --threshold	[INT]	coverage above the threshold\n");
 //	printf("	/* For Ion Torrent Data */\n");
 //	printf("	-w, --flow		modify the sequence by flow signals (FZ)\n");
@@ -416,7 +418,7 @@ int main(int argc, char *argv[]){
 	}else if (strcmp ( mode, "quality")==0){	BamSinglePointQuality(file_bam_i, file_bai_i, chromosome, start, &ToolsFlags, 'N');
 	}else if (strcmp ( mode, "stat")==0){		BamStat(file_bam_i, &ToolsFlags);
 	}else if (strcmp ( mode, "pattern")==0){	BamPattern(file_bam_i, file_bai_i, file_bed_i, chromosome, start, end, &ToolsFlags);
-	}else if (strcmp ( mode, "poly")==0){		BamPoly(file_bam_i, file_bai_i, file_bed_i, chromosome, start, end, &ToolsFlags);
+	}else if (strcmp ( mode, "ins")==0){		BamPoly(file_bam_i, file_bai_i, file_bed_i, chromosome, start, end, &ToolsFlags);
 	}else if (strcmp ( mode, "length")==0){		BamMappingLength(file_bam_i, file_bai_i, file_bed_i, chromosome, start, end, &ToolsFlags);
 	}else if (strcmp ( mode, "del")==0){		BamDelTxt(file_bam_i, file_bai_i, file_bed_i, &ToolsFlags);
 	}else if (strcmp ( mode, "trim")==0){		

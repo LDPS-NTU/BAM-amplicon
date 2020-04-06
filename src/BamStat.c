@@ -298,11 +298,23 @@ int	BamStat(FILE *file_bam_i, toolsFlags *ToolsFlags){
 	printf("===== ===== ===== ===== ===== ===== ===== =====\n");
 	printf("Item\tProper\tTotal\t(Properly %)\n");
 	printf("===== ===== ===== ===== ===== ===== ===== =====\n");
-	printf("SameChr\t%lu\t%lu\t(%f)\n",BamStatRead.Same_Properly, BamStatRead.Same, (float)BamStatRead.Same_Properly / BamStatRead.Same);
-	printf("Cross\t%lu\t%lu\t(%f)\n",BamStatRead.Cross_Properly, BamStatRead.Cross, (float)BamStatRead.Cross_Properly / BamStatRead.Cross);
-	printf("Single\t%lu\t%lu\t(%f)\n",BamStatRead.Singleton_Properly, BamStatRead.Singleton, (float)BamStatRead.Singleton_Properly / BamStatRead.Singleton);
+	if (BamStatRead.Same == 0){
+		printf("SameChr\t%lu\t%lu\t(%f)\n", 0, 0, 0.0);
+	}else{
+		printf("SameChr\t%lu\t%lu\t(%f)\n",BamStatRead.Same_Properly, BamStatRead.Same, (float)BamStatRead.Same_Properly / BamStatRead.Same);
+	}
+	if (BamStatRead.Cross == 0){
+		printf("Cross\t%lu\t%lu\t(%f)\n", 0, 0, 0.0);
+	}else{
+		printf("Cross\t%lu\t%lu\t(%f)\n",BamStatRead.Cross_Properly, BamStatRead.Cross, (float)BamStatRead.Cross_Properly / BamStatRead.Cross);
+	}
+	if (BamStatRead.Singleton == 0){
+		printf("Single\t%lu\t%lu\t(%f)\n", 0, 0, 0.0);
+	}else{
+		printf("Single\t%lu\t%lu\t(%f)\n",BamStatRead.Singleton_Properly, BamStatRead.Singleton, (float)BamStatRead.Singleton_Properly / BamStatRead.Singleton);
+	}
 	printf("===== ===== ===== ===== ===== ===== ===== =====\n");
-	printf("Error\t%lu\n",BamStatRead.Error);
+//	printf("Error\t%lu\n",BamStatRead.Error);
 	
 	free(stream_i);	
 	free(stream_o);	
