@@ -2,7 +2,7 @@
 
 ## Getting Started
 ```bash
-git clone https://github.com/YuCheng-Group/BAM-utility.git
+git clone https://github.com/LDPS-NTU/BAM-utility.git
 cd BAM-utility
 make
 export PATH=$PATH:"$PWD/bin/"
