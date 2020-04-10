@@ -20,12 +20,12 @@ Mode:	depthdist	show depths
 	
 	pattern		show frequency of patterns within a specified region	
 	del		show frequency of deletions with position information
-	ins		show read sequences with marked insertions
+	ins		show bracketed insertions in read sequences
 
 	stat		show BAM statistics
 	length		show distribution of mapped read lengths
 	ampsummary	show depths and coverage rates within specified amplicons
-	trim		show the nearest amplicon for trimming, by using amplicons provided by the BED file
+	trim		show the nearest amplicon using information provided by the BED file
 
 Options:
 	-b, --bam    [FILE]	input BAM file
