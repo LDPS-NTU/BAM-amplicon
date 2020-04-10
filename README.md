@@ -162,7 +162,7 @@ TOT.DP	PAT.FREQ **(TOT.DP: total depth; PAT.FREQ: pattern frequency)
 
 ### del
 ```
-# It will create files containing deletion information.
+# It will create files containing deletion information. (for example: chr1_del.txt)
 [user@local]$ bam-utility -m del -b ./example/foo_del.bam
 ```
 ### ins
@@ -221,7 +221,7 @@ Single	0	0	(0.000000)
 ```
 ### ampsummary
 ```
-# It will create files containing amplicon summary information.
+# It will create files containing amplicon summary information. (for example: Region*.txt)
 [user@local]$ bam-utility -m ampsummary -b ./example/foo.bam -r example/foo.bed
 ```
 ### trim
