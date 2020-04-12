@@ -19,8 +19,8 @@
 * File Name  
   * After executing `ampsummary`, there are three kinds of output files. They are `Region_InOut.txt`, `Region_ratio_[threshold].txt`, and `Region_stat_[threshold].txt`.  
   * The file, `Region_InOut.txt`, shows how many reads are inside or outside the regions of amplicons.  
+  * The files, `Region_stat_[threshold].txt`, shows the distribution of amplicons' cover rate.  
   * The files, `Region_ratio_[threshold].txt`, shows the summary of the reads of each amplicon under different thresholds.  
-  * The files, `Region_stat_[threshold].txt`, shows the how many reads are inside or outside of the regions of amplicons.  
 * Specification
 ```
 [user@local]$ bam-utility -m ampsummary -b ./example/foo.bam -r example/foo.bed
