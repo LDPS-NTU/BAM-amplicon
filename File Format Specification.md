@@ -66,9 +66,9 @@ Total	0	0	0	0	1	1.000000
 # The 5th column, LENGTH_NC, is the non-covered length of the amplicon
 # The 6th column, NUM_OF_BASES_I, is the number of bases inside the regions of the amplicon
 # The 7th column, AVE_OF_DEPTH, is the average depth of the amplicon
-# The 8th column, NUM_OF_BASES_I_B, is the number of bases inside the regions of the amplicon, but is adjuested by cover rate while amplicons is overlapped (*BETA*)
-# The 9th column, AVE_OF_DEPTH_B, is the average depth of the amplicon, but is adjuested by cover rate while amplicons is overlapped (*BETA*)
-# The 10th column, NUM_OF_BASES_I, is the coverage rate (under the given threshold, e.g. 0, 10, and 20)
+# The 8th column, NUM_OF_BASES_I_B, is the number of bases inside the regions of the amplicon, but is adjusted by cover rate while amplicons are overlapped (*BETA*)
+# The 9th column, AVE_OF_DEPTH_B, is the average depth of the amplicon, but is adjusted by cover rate while amplicons are overlapped (*BETA*)
+# The 10th column, CR, is the coverage rate (under the given threshold, e.g. 0, 10, and 20)
 # The 11th column, NUM_OF_READS_I, is the number of reads inside the regions of the amplicon
 
 ## The formulas
