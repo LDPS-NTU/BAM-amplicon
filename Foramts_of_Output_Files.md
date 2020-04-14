@@ -49,7 +49,7 @@ chr1	2	0	12
 Total	2	0	12	1.000000	0.000000
 
 -----
-## Region_ratio_[threshold].txt
+## Region_stat_[threshold].txt
 
 # Results of different depth thresholds are stored in different files.
 # For example, Region_stat_0.txt contains the statistics where the depth threshold is set to 0.
@@ -57,17 +57,17 @@ Total	2	0	12	1.000000	0.000000
 # Each reference forms a seperate line.
 # The 1st column, CHROM, is reference name.
 # The 2nd column, CR_0, is the number of amplicons where their coverage rates are 0%
-# The 3rd column, CR_50, is the number of amplicons where their coverage rates are > 0% but <= 50%
-# The 4th column, CR_90, is the number of amplicons where their coverage rates are > 50% but <= 90%
-# The 5th column, CR_99, is the number of amplicons where their coverage rates are > 90% but < 100%
+# The 3rd column, CR_50, is the number of amplicons where their coverage rates are > 0% but < 50%
+# The 4th column, CR_90, is the number of amplicons where their coverage rates are >= 50% but < 90%
+# The 5th column, CR_99, is the number of amplicons where their coverage rates are >= 90% but < 100%
 # The 6th column, CR_100, is the number of amplicons where their coverage rates are 100%
 
 # The 'Total' line
 # The 1st column indicates that it is the 'Totel' line.
 # The 2nd column, CR_0, is the total number of amplicons where their coverage rates are 0% for the reference(s) above
-# The 3rd column, CR_50, is the total number of amplicons where their coverage rates are > 0% but <= 50% for the reference(s) above
-# The 4th column, CR_90, is the total number of amplicons where their coverage rates are > 50% but <= 90% for the reference(s) above
-# The 5th column, CR_99, is the total number of amplicons where their coverage rates are > 90% but < 100% for the reference(s) above
+# The 3rd column, CR_50, is the total number of amplicons where their coverage rates are > 0% but < 50% for the reference(s) above
+# The 4th column, CR_90, is the total number of amplicons where their coverage rates are >= 50% but < 90% for the reference(s) above
+# The 5th column, CR_99, is the total number of amplicons where their coverage rates are >= 90% but < 100% for the reference(s) above
 # The 6th column, CR_100, is the total number of amplicons where their coverage rates are 100% for the reference(s) above
 # The last column is the sum of the coverage rates of all amplicons.
 
@@ -97,12 +97,12 @@ Total	0	0	0	0	1	1.000000
 # The 8th column, NUM_OF_BASES_I_B, is the number of bases inside the regions of the amplicon, but is adjusted by the coverage rate when the amplicon is overlapped with other amplicons (*BETA*)
 # The 9th column, AVE_OF_DEPTH_B, is the average depth of the amplicon, but is adjusted by the coverage rate when the amplicon is overlapped with other amplicons (*BETA*)
 # The 10th column, CR, is the coverage rate under the given threshold, e.g. 0, 10, and 20.
-# The 11th column, NUM_OF_READS_I, is the number of reads within the regions of the amplicon.
+# The 11th column, Q3_OF_DEPPTH, is the third quartile (Q3) depth of the amplicon.
 
 ## The formulas
 # The 4th column = (The 3rd column) - (The 1st column)
-# The 7th column = (The 6th column) / (The 4th column)
-# The 9th column = (The 8th column) / (The 4th column)
+# The 7th column = (The 6th column) / ((The 4th column)-(The 5th column))
+# The 9th column = (The 8th column) / ((The 4th column)-(The 5th column))
 
 # The following example shows that the length of the amplicon is 12. (Note that the starting position is 0-based, while the ending position is 1-based.)
 # There are 2 two reads covering the amplicon, and the total read length within the amplicon region is 18.
