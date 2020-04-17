@@ -222,7 +222,7 @@ Single	0	0	(0.000000)
 ### ampsummary
 ```
 # It will create files containing amplicon summary information. (for example: Region*.txt)
-[user@local]$ bam-utility -m ampsummary -b ./example/foo.bam -r example/foo.bed
+[user@local]$ bam-utility -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
 ```
 ### trim
 ```
