@@ -40,13 +40,14 @@
 # The 3rd column, TOTAL_NUM_OF_READS_O, is the number of reads outside the regions of amplicons for the reference(s) above
 # The 4th column, TOTAL_NUM_OF_BASES_I, is the total length of amplicons in the reference(s) above
 # The last two columns are the rates of the reads inside/outside the regions of the amplicons
-# 2/(2+0) = 1.00000
-# 0/(2+0) = 0.00000
+# 4/(4+2) = 0.666667
+# 2/(4+2) = 0.333333
 
-[user@local]$ bam-utility -m ampsummary -b ./example/foo.bam -r example/foo.bed
+[user@local]$ bam-utility -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
 [user@local]$ cat Region_InOut.txt
 chr1	2	0	12
-Total	2	0	12	1.000000	0.000000
+chr2	2	2	12
+Total	4	2	24	0.666667	0.333333
 
 -----
 ## Region_stat_[threshold].txt
@@ -71,14 +72,13 @@ Total	2	0	12	1.000000	0.000000
 # The 6th column, CR_100, is the total number of amplicons where their coverage rates are 100% for the reference(s) above
 # The last column is the sum of the coverage rates of all amplicons.
 
-# For exmaple, if there are 2 amplicons, the coverage rates are 0.97 and 0.84, respectively.
-# The value in the last column will be shown as '1.81'.
-# The following example shows that there is only one reference file.
-# When setting the threshold to 0, one amplicon, with the coverage rate = 100%, is observed.
+# For exmaple, if there are 3 amplicons, the coverage rates are 1.000000, 0.875000 and 0.909091, respectively.
+# The value in the last column will be shown as '2.784091'.
 
 [user@local]$ cat Region_stat_0.txt
 chr1	0	0	0	0	1
-Total	0	0	0	0	1	1.000000
+chr2	0	0	1	1	0
+Total	0	0	1	1	1	2.784091
 
 -----
 ## Region_ratio_[threshold].txt
@@ -110,5 +110,7 @@ Total	0	0	0	0	1	1.000000
 
 [user@local]$ cat Region_ratio_0.txt
 chr1	39414	39426	12	0	18	1.500000	18	1.500000	1.000000	2
+chr2	19414	19422	8	1	11	1.571429	5	0.714286	0.875000	0
+chr2	19415	19426	11	1	16	1.600000	12	1.200000	0.909091	2
 
 ```
