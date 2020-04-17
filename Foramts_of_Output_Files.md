@@ -20,8 +20,9 @@
 
 ## ampsummary
 * Output File Names
-  * After executing `ampsummary`, there are three kinds of output files, including `Region_InOut.txt`, `Region_ratio_[threshold].txt`, and `Region_stat_[threshold].txt`.  
+  * After executing `ampsummary`, there are three kinds of output files, including `Region_InOut.txt`, `Base_stat.txt`,  `Region_ratio_[threshold].txt`, and `Region_stat_[threshold].txt`.  
   * The file, `Region_InOut.txt`, shows how many reads are inside/outside the regions of amplicons.  
+  * The file, `Base_stat.txt`, shows the distribution of the depth of the targeted positions.  
   * The files, `Region_stat_[threshold].txt`, shows the coverage rates within the region of amplicons (for a given threshold in depth). 
   * The files, `Region_ratio_[threshold].txt`, shows the summary of reads within the region of amplicons (for a given threshold in depth).  
 * Formats
@@ -48,6 +49,44 @@
 chr1	2	0	12
 chr2	2	2	12
 Total	4	2	24	0.666667	0.333333
+
+-----
+## Base_stat.txt
+# Each reference forms a seperate line.
+# The 1st column, CHROM, is the reference name.
+# The 2nd column, DP_0, is the number of targeted positions where their depth are 0 on CHROM
+# The 3rd column, DP_9, is the number of targeted positions where their depth are >= 1 but <= 9 on CHROM
+# The 4th column, DP_19, is the number of targeted positions where their depth are >= 10 but <= 19 on CHROM
+# The 5th column, DP_29, is the number of targeted positions where their depth are >= 20 but <= 29 on CHROM
+# The 6th column, DP_39, is the number of targeted positions where their depth are >= 30 but <= 39 on CHROM
+# The 7th column, DP_49, is the number of targeted positions where their depth are >= 40 but <= 49 on CHROM
+# The 8th column, DP_59, is the number of targeted positions where their depth are >= 50 but <= 59 on CHROM
+# The 9th column, DP_69, is the number of targeted positions where their depth are >= 60 but <= 69 on CHROM
+# The 10th column, DP_79, is the number of targeted positions where their depth are >= 70 but <= 79 on CHROM
+# The 11th column, DP_89, is the number of targeted positions where their depth are >= 80 but <= 89 on CHROM
+# The 12th column, DP_99, is the number of targeted positions where their depth are >= 90 but <= 99 on CHROM
+# The 13th column, DP_100, is the number of targeted positions where their depth are >= 100 on CHROM
+
+# The 'Total' line:
+# The 1st column indicates that it is the 'Total' line.
+# The 2nd column, DP_0, is the number of targeted positions where their depth are 0 for the reference(s) above
+# The 3rd column, DP_9, is the number of targeted positions where their depth are >= 1 but <= 9 for the reference(s) above
+# The 4th column, DP_19, is the number of targeted positions where their depth are >= 10 but <= 19 for the reference(s) above
+# The 5th column, DP_29, is the number of targeted positions where their depth are >= 20 but <= 29 for the reference(s) above
+# The 6th column, DP_39, is the number of targeted positions where their depth are >= 30 but <= 39 for the reference(s) above
+# The 7th column, DP_49, is the number of targeted positions where their depth are >= 40 but <= 49 for the reference(s) above
+# The 8th column, DP_59, is the number of targeted positions where their depth are >= 50 but <= 59 for the reference(s) above
+# The 9th column, DP_69, is the number of targeted positions where their depth are >= 60 but <= 69 for the reference(s) above
+# The 10th column, DP_79, is the number of targeted positions where their depth are >= 70 but <= 79 for the reference(s) above
+# The 11th column, DP_89, is the number of targeted positions where their depth are >= 80 but <= 89 for the reference(s) above
+# The 12th column, DP_99, is the number of targeted positions where their depth are >= 90 but <= 99 for the reference(s) above
+# The 13th column, DP_100, is the number of targeted positions where their depth are >= 100 for the reference(s) above
+# The last two columns are the number of bases and the number of deletions in the the regions of the amplicons.
+
+[user@local]$ cat Base_stat.txt
+chr1	0	12	0	0	0	0	0	0	0	0	0	0
+chr2	1	11	0	0	0	0	0	0	0	0	0	0
+Total	1	23	0	0	0	0	0	0	0	0	0	0	35	2
 
 -----
 ## Region_stat_[threshold].txt
