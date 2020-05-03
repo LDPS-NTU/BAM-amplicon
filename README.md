@@ -94,6 +94,7 @@ Single	0	0	(0.000000)
 ### ampsummary
 ```
 # It will create files containing amplicon summary information. (for example: Region*.txt)
+# See Formats_of_Output_Files.md for more details.
 [user@local]$ bam-utility -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
 ```
 
@@ -225,6 +226,7 @@ TOT.DP	PAT.FREQ **(TOT.DP: total depth; PAT.FREQ: pattern frequency)
 ### del
 ```
 # It will create files containing deletion information. (for example: chr1_del.txt)
+# See Formats_of_Output_Files.md for more details.
 [user@local]$ bam-utility -m del -b ./example/foo_del.bam
 ```
 
