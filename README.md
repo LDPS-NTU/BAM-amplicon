@@ -44,6 +44,67 @@ Options:
 
 ## Examples
 
+### stat
+```
+[user@local]$ bam-utility -m stat -b ./example/foo.bam
+Item	Mapped	UnMap	Total	(Mapped)
+===== ===== ===== ===== ===== ===== ===== =====
+Sample	2	0	2	(1.000000)
+R1	1	0	1	(1.000000)
+R2	1	0	1	(1.000000)
+----- ----- ----- ----- ----- ----- ----- -----
+UnChimeric_Sample	2	0	2	(1.000000)
+UnChimeric_R1	1	0	1	(1.000000)
+UnChimeric_R2	1	0	1	(1.000000)
+----- ----- ----- ----- ----- ----- ----- -----
+Proper	2	0	2
+R1_PP	1	0	1	(1.000000)
+R2_PP	1	0	1	(1.000000)
+----- ----- ----- ----- ----- ----- ----- -----
+Dupli	0
+R1_Dup	0
+R2_Dup	0
+===== ===== ===== ===== ===== ===== ===== =====
+Item	Proper	Total	(Properly)
+===== ===== ===== ===== ===== ===== ===== =====
+SameChr	2	2	(1.000000)
+Cross	0	0	(0.000000)
+Single	0	0	(0.000000)
+===== ===== ===== ===== ===== ===== ===== =====
+```
+
+### length
+```
+[user@local]$ bam-utility -m length -b ./example/foo.bam
+0	0
+1	0
+2	0
+3	0
+4	0
+5	0
+6	0
+7	0
+8	0
+9	2
+10	0
+11	0
+...
+```
+
+### ampsummary
+```
+# It will create files containing amplicon summary information. (for example: Region*.txt)
+[user@local]$ bam-utility -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
+```
+
+### trim
+```
+[user@local]$ bam-utility -m trim -b ./example/foo.bam -t example/foo_trim.bed
+MIN.DIS	MIN.S	MIN.E	SEQ.POS	AMP.POS
+1	0	1	chr1:39414-39423	chr1:39414-39422
+2	-2	0	chr1:39417-39426	chr1:39415-39426
+```
+
 ### depthdist
 ```
 [user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420
@@ -72,6 +133,7 @@ chr1	3	0
 TOT.DP	3	0
 COV.RT	0.42857	0.00000
 ```
+
 ### quality
 ```
 [user@local]$ bam-utility -m quality -b ./example/foo.bam -c chr1 -s 39420
@@ -165,6 +227,7 @@ TOT.DP	PAT.FREQ **(TOT.DP: total depth; PAT.FREQ: pattern frequency)
 # It will create files containing deletion information. (for example: chr1_del.txt)
 [user@local]$ bam-utility -m del -b ./example/foo_del.bam
 ```
+
 ### ins
 ```
 [user@local]$ bam-utility -m ins -b ./example/foo_ins.bam -c chr1 -s 39415 -e 39426
@@ -173,61 +236,3 @@ read_001_R1	ATGTGT[T]TTT<<<
 read_001_R2	>>>TGT[T]TTTGCA
 ```
 
-### stat
-```
-[user@local]$ bam-utility -m stat -b ./example/foo.bam
-Item	Mapped	UnMap	Total	(Mapped)
-===== ===== ===== ===== ===== ===== ===== =====
-Sample	2	0	2	(1.000000)
-R1	1	0	1	(1.000000)
-R2	1	0	1	(1.000000)
------ ----- ----- ----- ----- ----- ----- -----
-UnChimeric_Sample	2	0	2	(1.000000)
-UnChimeric_R1	1	0	1	(1.000000)
-UnChimeric_R2	1	0	1	(1.000000)
------ ----- ----- ----- ----- ----- ----- -----
-Proper	2	0	2
-R1_PP	1	0	1	(1.000000)
-R2_PP	1	0	1	(1.000000)
------ ----- ----- ----- ----- ----- ----- -----
-Dupli	0
-R1_Dup	0
-R2_Dup	0
-===== ===== ===== ===== ===== ===== ===== =====
-Item	Proper	Total	(Properly)
-===== ===== ===== ===== ===== ===== ===== =====
-SameChr	2	2	(1.000000)
-Cross	0	0	(0.000000)
-Single	0	0	(0.000000)
-===== ===== ===== ===== ===== ===== ===== =====
-```
-
-### length
-```
-[user@local]$ bam-utility -m length -b ./example/foo.bam
-0	0
-1	0
-2	0
-3	0
-4	0
-5	0
-6	0
-7	0
-8	0
-9	2
-10	0
-11	0
-...
-```
-### ampsummary
-```
-# It will create files containing amplicon summary information. (for example: Region*.txt)
-[user@local]$ bam-utility -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
-```
-### trim
-```
-[user@local]$ bam-utility -m trim -b ./example/foo.bam -t example/foo_trim.bed
-MIN.DIS	MIN.S	MIN.E	SEQ.POS	AMP.POS
-1	0	1	chr1:39414-39423	chr1:39414-39422
-2	-2	0	chr1:39417-39426	chr1:39415-39426
-```
