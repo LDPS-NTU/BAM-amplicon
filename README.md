@@ -1,9 +1,9 @@
-# BAM-utility
+# BAM-amplicon
 
 ## Getting Started
 ```bash
-git clone https://github.com/LDPS-NTU/BAM-utility.git
-cd BAM-utility
+git clone https://github.com/LDPS-NTU/BAM-amplicon.git
+cd BAM-amplicon
 make
 export PATH=$PATH:"$PWD/bin/"
 ```
@@ -11,9 +11,9 @@ export PATH=$PATH:"$PWD/bin/"
 
 ## Users' Guide
 ```
-Program: bam-utility (for BAM file)
+Program: bam-amplicon (for BAM file)
 Version: 1.0
-Usage:  bam-utility -m <Mode> -b <bam_filename> [Options]
+Usage:  bam-amplicon -m <Mode> -b <bam_filename> [Options]
 
 Mode:	depthdist	show depths
 	quality		show distribution of quality scores at a specified position
@@ -46,7 +46,7 @@ Options:
 
 ### stat
 ```
-[user@local]$ bam-utility -m stat -b ./example/foo.bam
+[user@local]$ bam-amplicon -m stat -b ./example/foo.bam
 Item	Mapped	UnMap	Total	(Mapped)
 ===== ===== ===== ===== ===== ===== ===== =====
 Sample	2	0	2	(1.000000)
@@ -75,7 +75,7 @@ Single	0	0	(0.000000)
 
 ### length
 ```
-[user@local]$ bam-utility -m length -b ./example/foo.bam
+[user@local]$ bam-amplicon -m length -b ./example/foo.bam
 0	0
 1	0
 2	0
@@ -95,12 +95,12 @@ Single	0	0	(0.000000)
 ```
 # It will create files containing amplicon summary information. (for example: Region*.txt)
 # See Formats_of_Output_Files.md for more details.
-[user@local]$ bam-utility -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
+[user@local]$ bam-amplicon -m ampsummary -b ./example/foo_amp.bam -r example/foo_amp.bed
 ```
 
 ### trim
 ```
-[user@local]$ bam-utility -m trim -b ./example/foo.bam -t example/foo_trim.bed
+[user@local]$ bam-amplicon -m trim -b ./example/foo.bam -t example/foo_trim.bed
 MIN.DIS	MIN.S	MIN.E	SEQ.POS	AMP.POS
 1	0	1	chr1:39414-39423	chr1:39414-39422
 2	-2	0	chr1:39417-39426	chr1:39415-39426
@@ -108,7 +108,7 @@ MIN.DIS	MIN.S	MIN.E	SEQ.POS	AMP.POS
 
 ### depthdist
 ```
-[user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420
+[user@local]$ bam-amplicon -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420
 CHR	POS	A	C	G	T	N	DEL	TOTAL
 chr1	39414	0	0	0	0	0	0	0
 chr1	39415	1	0	0	0	0	0	1
@@ -118,17 +118,17 @@ chr1	39418	0	0	0	2	0	0	2
 chr1	39419	0	0	2	0	0	0	2
 chr1	39420	0	0	0	2	0	0	2
 
-[user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -l
+[user@local]$ bam-amplicon -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -l
 AVE.DP	COV.RT	**(AVE.DP: average depth; COV.RT: coverage rate)
 1.5000	0.857143
 
-[user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -l -u 2
+[user@local]$ bam-amplicon -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -l -u 2
 THRESH	2X	** (THRESH: threshold)
 chr1	3
 TOT.DP	3
 COV.RT	0.42857
 
-[user@local]$ bam-utility -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -l -u 2,5
+[user@local]$ bam-amplicon -m depthdist -b ./example/foo.bam -c chr1 -s 39414 -e 39420 -l -u 2,5
 THRESH	2X	5X	** (THRESH: threshold)
 chr1	3	0
 TOT.DP	3	0
@@ -137,7 +137,7 @@ COV.RT	0.42857	0.00000
 
 ### quality
 ```
-[user@local]$ bam-utility -m quality -b ./example/foo.bam -c chr1 -s 39420
+[user@local]$ bam-amplicon -m quality -b ./example/foo.bam -c chr1 -s 39420
 Q.SCORE	A_FOR	C_FOR	G_FOR	T_FOR	A_REV	C_REV	G_REV	T_REV	**(Q.SCORE: quality score)
 0	0	0	0	0	0	0	0	0	**(FOR: forward; REV: reverse)
 1	0	0	0	0	0	0	0	0
@@ -208,17 +208,17 @@ SUM	0	0	0	36	0	0	0	36
 
 ### pattern
 ```
-[user@local]$ bam-utility -m pattern -b ./example/foo.bam -c chr1 -s 39418 -e 39420
+[user@local]$ bam-amplicon -m pattern -b ./example/foo.bam -c chr1 -s 39418 -e 39420
 ID	PATTERN
 read_001_R1	TGT
 read_001_R2	TGT
 
-[user@local]$ bam-utility -m pattern -b ./example/foo.bam -c chr1 -s 39418 -e 39420 -a
+[user@local]$ bam-amplicon -m pattern -b ./example/foo.bam -c chr1 -s 39418 -e 39420 -a
 PATTERN
 TGT
 TGT
 
-[user@local]$ bam-utility -m pattern -b ./example/foo.bam -c chr1 -s 39418 -e 39420 -p TGT -a
+[user@local]$ bam-amplicon -m pattern -b ./example/foo.bam -c chr1 -s 39418 -e 39420 -p TGT -a
 TOT.DP	PAT.FREQ **(TOT.DP: total depth; PAT.FREQ: pattern frequency)
 2	1.00000
 ```
@@ -227,12 +227,12 @@ TOT.DP	PAT.FREQ **(TOT.DP: total depth; PAT.FREQ: pattern frequency)
 ```
 # It will create files containing deletion information. (for example: chr1_del.txt)
 # See Formats_of_Output_Files.md for more details.
-[user@local]$ bam-utility -m del -b ./example/foo_del.bam
+[user@local]$ bam-amplicon -m del -b ./example/foo_del.bam
 ```
 
 ### ins
 ```
-[user@local]$ bam-utility -m ins -b ./example/foo_ins.bam -c chr1 -s 39415 -e 39426
+[user@local]$ bam-amplicon -m ins -b ./example/foo_ins.bam -c chr1 -s 39415 -e 39426
 ID	PATTERN
 read_001_R1	ATGTGT[T]TTT<<<
 read_001_R2	>>>TGT[T]TTTGCA
