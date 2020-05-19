@@ -20,9 +20,9 @@ void 	alignment_ListAndCoverage(uint8_t *stream, alignmentHeader *AlignmentHeade
 void	strcat_triple(char	*main, char *first, char *second, char *third, int length);
 
 void	usage(){
-	printf("Program: bam-utility (for BAM file)\n");
+	printf("Program: bam-amplicon (for BAM file)\n");
 	printf("Version: 1.0\n");
-	printf("Usage:   bam-utility -m <Mode> -b <bam_filename> [Options]\n");
+	printf("Usage:   bam-amplicon -m <Mode> -b <bam_filename> [Options]\n");
 	printf("\n");
 	//printf("Mode:	depthdist	about depth's distribution\n");
 	printf("Mode:	depthdist	show depths\n");
